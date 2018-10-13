@@ -8,15 +8,15 @@ Example from the s7webserver:
 ```c
 
 static const char *g_usage_string = ""
-  "Usage: s7webserver [--verbose] [--very-verbose] [--search-for-first-portnum false-or-true] [portnumber]\n" 
+  "Usage: s7webserver [--verbose] [--very-verbose] [--search-for-first-free-portnum false-or-true] [portnumber]\n" 
   "\n"                                                                  
   "Default values:\n"                                                  
   "  verbose: false\n"                                                 
   "  very-verbose: false\n"                                            
-  "  search-for-first-portnum: true\n"
+  "  search-for-first-free-portnum: true\n"
   "  portnumber: 6080\n"                                               
   "\n"                                                                 
-  "Unless \'dont-search-for-first-portnum\' is set, s7webserver will search for the next free port number starting at \'portnumber\'.\n" 
+  "If \'search-for-first-portnum\' is set, s7webserver will search for the next free port number starting at \'portnumber\'.\n" 
   "\n";
 
 int main(int argc, char **argv){
@@ -30,7 +30,7 @@ int main(int argc, char **argv){
   {
     OPTARG("--verbose","-v") verbose = true;
     OPTARG("--very-verbose","-vv") very_verbose = true;
-    OPTARG("--search-for-first-portnum", "-s") find_first_free_portnum=OPTARG_GETBOOL();
+    OPTARG("--search-for-first-free-portnum", "-s") find_first_free_portnum=OPTARG_GETBOOL();
     OPTARG_LAST() portnumber=OPTARG_GETINT();
   }OPTARGS_END;
 ```
